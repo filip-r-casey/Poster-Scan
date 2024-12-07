@@ -31,6 +31,10 @@ public class App {
                 .addUrl("https://www.instagram.com/"+instagram_username+"/")
                 .build();
         gallerydl.run();
+
+        ExpressoScraper expressoScraper = new ExpressoScraper("https://expressobeans.com/public/hottoday.php");
+        expressoScraper.getImages();
+
         Mogrify mogrify = Mogrify.newBuilder()
                 .setExecPath("/opt/homebrew/bin/mogrify")
                 .setImageSize(150, 150)
@@ -272,7 +276,7 @@ public class App {
     public static void main(String[] args) throws IOException {
         App app = new App();
         System.out.println("Collecting Images");
-        app.collectImages(25);
+        app.collectImages(10);
         System.out.println("Processing Images");
         app.apiPost(app.processImages());
     }
